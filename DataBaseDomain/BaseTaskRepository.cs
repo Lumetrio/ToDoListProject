@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace DataBaseDomain
 {
-	public class BaseRepository : IBaseRepository<TaskEntity>
+	public class BaseTaskRepository : IBaseRepository<TaskEntity>
 	{
 		private readonly ApplicationContext _context;
 
-		public BaseRepository(ApplicationContext context)
+		public BaseTaskRepository(ApplicationContext context)
 		{
 			_context = context;
 		}

@@ -1,0 +1,23 @@
+﻿@using DataBaseDomain;
+@using Domains.Models;
+@model List<User>;
+
+<table class="table bg-red table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>User Id</th>
+            <th>User Name</th>
+            <th>User Password</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.Name</td>
+                <td>@user.Password</td>
+            </tr>
+        }
+    </tbody>
+</table>

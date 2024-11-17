@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Views\Home\Another.cshtml.cs" />
+    <Compile Remove="Views\Task\Another.cshtml.cs" />
   </ItemGroup>
 
   <ItemGroup>

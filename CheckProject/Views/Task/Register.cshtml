@@ -1,0 +1,28 @@
+﻿@model Domains.Models.User
+<form method="post">
+	<div class="container">
+		<p class="col-md-4">
+		Login
+	<input asp-for="Name" />
+		</p>
+		<p class="col-md-4">
+			Password
+			<input type="password" asp-for="Password" id="pass"/>
+		</p>
+		<p class="col-md-4">
+			 Confirm Password
+			<input  type="password" id="ConfirmPassword" />
+		</p>
+		<script>
+			function ComparePasswords() {
+				if (document.getElementById("pass") !== document.getElementById("ConfirmPassword")) {
+					//ввести чтобы был такой-то пароль
+				}
+				else{
+					return;
+				}
+			}
+		</script>
+		<input type="submit" value="Send" onclick="ComparePasswords" />
+	</div>
+</form>
