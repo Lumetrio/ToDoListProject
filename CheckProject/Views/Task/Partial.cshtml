@@ -1,0 +1,24 @@
+﻿@using Domains.Models;
+@model List<TaskEntity>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Name</th>
+            <th>Priority</th>
+            <th>WasAdded</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model)
+        {
+            <tr>
+                <td>@task.Description</td>
+                <td>@task.Name</td>
+                <td>@task.Priority</td>
+               
+            </tr>
+        }
+    </tbody>
+</table>

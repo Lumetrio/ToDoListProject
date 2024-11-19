@@ -1,0 +1,101 @@
+﻿@using Domains.Models;
+@using Domains.Enums;
+@model TaskEntity;
+<div class="container mt-5">
+    <div class="row">
+     
+        <div class="col-md-6">
+            <form method="post" id="createTaskForm" asp-controller="Task" asp-action="GetShitDone">
+                <label class="mb-3" asp-for="Name">Task Name</label>
+                <br />
+                <input type="text" asp-for="Name" />
+                <br />
+                <select name="priority" class="form-select" style="width:250px;" asp-items="Html.GetEnumSelectList<Priority>()"></select>
+                <br />
+                <label asp-for="Description" class="mb-1">Description</label>
+                <br />
+                <textarea asp-for="Description" style="width:300px;height:100px;"></textarea>
+                <br />
+                <button type="submit" id="createTask" class="btn btn-primary">Создать</button>
+            </form>
+        </div>
+
+        <!-- Таблица -->
+        <div class="col-md-6" id="taskTable">
+            @{
+                await Html.RenderPartialAsync("Partial");
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // Обработка формы
+        $('#createTaskForm').on('submit', function (e) {
+            e.preventDefault(); // Предотвращаем стандартную отправку формы
+
+            // AJAX-запрос
+            $.ajax({
+                url: $(this).attr('action'),
+                method: 'POST',
+                data: $(this).serialize(),
+                success: function (result) {
+                    // Обновляем содержимое таблицы
+                    $('#taskTable').html(result);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Ошибка:', error);
+                }
+            });
+        });
+    });
+</script>
+@* <div class="container mt-5">
+    <div class="row">
+        <!-- Форма добавления задачи -->
+        <div class="col-md-6">
+            <form method="post" id="createTaskForm" asp-controller="Task" asp-action="GetShitDone">
+                <label class="mb-3" asp-for="Name">Task Name</label>
+                <input type="text" asp-for="Name" class="form-control" />
+                <br />
+                <label asp-for="Priority">Priority</label>
+                <select name="Priority" class="form-select" asp-items="Html.GetEnumSelectList<Priority>()"></select>
+                <br />
+                <label asp-for="Description">Description</label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <br />
+                <button type="submit" class="btn btn-primary">Создать</button>
+            </form>
+        </div>
+
+        <!-- Таблица задач -->
+        <div class="col-md-6" id="taskTable">
+            @{
+                await Html.RenderPartialAsync("Partial");
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#createTaskForm').on('submit', function (e) {
+        e.preventDefault(); // Отключаем стандартное поведение формы
+
+        $.ajax({
+            url: $(this).attr('action'), // Используем URL из атрибута action формы
+            type: "POST",
+            data: $(this).serialize(), // Сериализуем данные формы
+            success: function (result) {
+                // Обновляем только таблицу
+                $('#taskTable').html(result);
+
+                // Очищаем поля формы после успешного добавления
+                $('#createTaskForm')[0].reset();
+            },
+            error: function (xhr, status, error) {
+                console.error("Ошибка при добавлении задачи:", error);
+            }
+        });
+    });
+</script> *@

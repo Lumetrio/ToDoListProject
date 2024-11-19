@@ -16,6 +16,7 @@ namespace Domains.Models
         public Priority Priority { get; set; }
 
         public DateTime GetCreated { get; set; }
-        
+        //public int UserId { get; set; }
+        //public User User { get; set; }
     }
 }
